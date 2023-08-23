@@ -1,11 +1,13 @@
 # InventoryService
+
 Inventory service for SWA project.
 
 ## API description
 
 ### Get all items
 
-```GET /inventory HTTP/1.1
+```HTTP
+GET /inventory HTTP/1.1
 Host: {{host}}
 ```
 
@@ -14,7 +16,8 @@ Host: {{host}}
 If item with ID does not exist the return code will be **404**. 
 In case everything is OK the return code will be **200**.
 
-```GET /inventory/{{id}} HTTP/1.1
+```HTTP
+GET /inventory/{{id}} HTTP/1.1
 Content-Type: application/json
 Host: {{host}}
 ```
@@ -24,7 +27,8 @@ Host: {{host}}
 If new item does not contain following keys: `["name", "cost", "quantity"]` the return code will be **400**. 
 In case everything is OK the return code will be **200**.
 
-```POST /users HTTP/1.1
+```HTTP
+POST /users HTTP/1.1
 Content-Type: application/json
 Host: {{host}}
 Content-Length: 73
@@ -41,7 +45,8 @@ Content-Length: 73
 If item with ID does not exist the return code will be **404**. 
 In case everything is OK the return code will be **200**.
 
-```DELETE /users/{{id}} HTTP/1.1
+```HTTP
+DELETE /users/{{id}} HTTP/1.1
 Content-Type: application/json
 Host: {{host}}
 ```
@@ -52,7 +57,8 @@ If item with ID does not exist the return code will be **404**.
 If you try to change ID the return code will be **400**.
 In case everything is OK the return code will be **200**.
 
-```PUT /users/{{id}} HTTP/1.1
+```HTTP
+PUT /users/{{id}} HTTP/1.1
 Content-Type: application/json
 Host: {{host}}
 Content-Length: 28
