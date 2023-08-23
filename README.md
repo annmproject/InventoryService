@@ -8,6 +8,7 @@ Inventory service for SWA project.
 - `logging` (should be native)
 - `unittest` (should be native)
 - `requests` (should be native)
+- `os` (should be native)
 
 ## Logging
 
