@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, request
 import logging
+import os
 
 
 # create Flask object
@@ -11,11 +12,14 @@ inventory = [
     {"id": 2, "name": "Item B", "cost": 333, "quantity": 5},
 ]
 
+# get the port from the environment variable or use the default value (80)
+port = int(os.environ.get("FLASK_PORT", 80))
+
 
 @app.route('/inventory', methods=['GET'])
 def get_items():
     logging.info("GET request received for all items")
-    return jsonify(inventory)
+    return jsonify(inventory), 200
 
 
 @app.route('/inventory/<int:item_id>', methods=['GET'])
@@ -25,7 +29,7 @@ def get_item(item_id):
     if item is None:
         logging.warning(f"Item with ID {item_id} not found")
         return jsonify({"error": "Item not found"}), 404
-    return jsonify(item)
+    return jsonify(item), 200
 
 
 @app.route('/inventory', methods=['POST'])
@@ -70,10 +74,10 @@ def update_item(item_id):
         return jsonify({"error": "Cannot update 'id' field"}), 400
     item.update(updated_data)
     logging.info(f"Item with ID {item_id} updated")
-    return jsonify(item)
+    return jsonify(item), 200
 
 
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', port=5000)
+    app.run(host='0.0.0.0', port=port)
 
 
