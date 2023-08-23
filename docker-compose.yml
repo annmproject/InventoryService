@@ -1,0 +1,9 @@
+services:
+  flask-app:
+    build:
+      context: .
+      dockerfile: api/Dockerfile
+    environment:
+      - FLASK_PORT=80
+    ports:
+      - "5555:80"
