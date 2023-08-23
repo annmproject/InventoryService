@@ -4,8 +4,14 @@ Inventory service for SWA project.
 
 ## Dependencies
 
-- `Flask`
-- `Logging` (should be native)
+- `flask`
+- `logging` (should be native)
+- `unittest` (should be native)
+- `requests` (should be native)
+
+## Logging
+
+Logs are printed to the standard output.
 
 ## API description
 
