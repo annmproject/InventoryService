@@ -2,6 +2,11 @@
 
 Inventory service for SWA project.
 
+## Dependencies
+
+- `Flask`
+- `Logging` (should be native)
+
 ## API description
 
 ### Get all items
