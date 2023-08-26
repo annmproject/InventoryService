@@ -1,11 +1,14 @@
 import unittest
 import requests
+import os
 
+# get the port from the environment variable or use the default value (5555)
+port = int(os.environ.get("APP_PORT", 5555))
 
 class TestAppIntegration(unittest.TestCase):
 
     def setUp(self):
-        self.base_url = "http://127.0.0.1:5000"  # Replace with your app's URL
+        self.base_url = "http://api:" + str(port) 
 
     def test_full_flow(self):
 
