@@ -7,8 +7,12 @@ Inventory service for SWA project.
 - `flask`
 - `logging` (should be native)
 - `unittest` (should be native)
-- `requests` (should be native)
+- `requests`
 - `os` (should be native)
+
+## Build
+
+To build and run tests use command : `sudo docker compose -f docker-compose.yml -f docker-compose.test.yml up --build`.
 
 ## Logging
 
