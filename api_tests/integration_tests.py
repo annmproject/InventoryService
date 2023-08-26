@@ -5,6 +5,7 @@ import os
 # get the port from the environment variable or use the default value (5555)
 port = int(os.environ.get("APP_PORT", 5555))
 
+
 class TestAppIntegration(unittest.TestCase):
 
     def setUp(self):
