@@ -1,0 +1,9 @@
+services:
+  api-test:
+    depends_on:
+      - api
+    build:
+      dockerfile: api_tests/Dockerfile
+      context: .
+    environment:
+      - APP_PORT=5555
