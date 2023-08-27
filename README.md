@@ -4,6 +4,14 @@
 
 Inventory service for SWA project.
 
+## Usage
+
+Run service from published image:
+
+```
+docker compose -f docker-compose.yml -f docker-compose.prod.yml up
+```
+
 ## Dependencies
 
 - `flask`

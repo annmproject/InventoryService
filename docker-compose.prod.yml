@@ -1,0 +1,5 @@
+services:
+  api:
+    platform: linux/amd64
+    image: ghcr.io/annmproject/inventoryservice:main
+    build: !reset null
