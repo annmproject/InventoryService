@@ -5,5 +5,3 @@ services:
     build:
       dockerfile: api_tests/Dockerfile
       context: .
-    environment:
-      - APP_PORT=5555
