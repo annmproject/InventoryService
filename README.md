@@ -1,5 +1,7 @@
 # InventoryService
 
+![tests](https://github.com/annmproject/InventoryService/actions/workflows/tests.yml/badge.svg)
+
 Inventory service for SWA project.
 
 ## Dependencies
