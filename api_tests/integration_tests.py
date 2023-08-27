@@ -5,7 +5,7 @@ import requests
 class TestAppIntegration(unittest.TestCase):
 
     def setUp(self):
-        self.base_url = "http://api"
+        self.base_url = "http://api1"
 
     def test_full_flow(self):
 
