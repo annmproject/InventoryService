@@ -5,13 +5,8 @@ on:
   push:
     paths:
       - api/**
-      - api_test/**
+      - api_tests/**
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-    paths:
-      - api/**
-      - api_test/**
 
 jobs:
 
