@@ -12,6 +12,11 @@ Run service from published image:
 docker compose -f docker-compose.yml -f docker-compose.prod.yml up
 ```
 
+To see Swagger UI you can visit:
+```
+http://localhost:PORT/apidocs/
+```
+
 ## Dependencies
 
 - `flask`
