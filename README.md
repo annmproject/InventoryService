@@ -24,6 +24,7 @@ http://localhost:PORT/apidocs/
 - `unittest` (should be native)
 - `requests`
 - `os` (should be native)
+- `flasgger`
 
 ## Build
 
