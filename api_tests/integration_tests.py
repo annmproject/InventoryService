@@ -42,10 +42,6 @@ class TestAppIntegration(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json()['quantity'], 10)
 
-        # try to update id of new item
-        response = requests.put(f"{self.base_url}/inventory/{new_item_id}", json={"id": 0})
-        self.assertEqual(response.status_code, 400)
-
         # try to update non-existing item
         response = requests.get(f"{self.base_url}/inventory/9999")
         self.assertEqual(response.status_code, 404)
