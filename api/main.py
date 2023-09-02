@@ -26,6 +26,23 @@ def get_items():
         responses:
           200:
             description: A list of items
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    description: The ID of the item
+                  name:
+                    type: string
+                    description: The name of the item
+                  cost:
+                    type: integer
+                    description: The cost of the item
+                  quantity:
+                    type: integer
+                    description: The quantity of the item
     """
     logging.info("GET request received for all items")
     return jsonify(inventory), 200
@@ -45,8 +62,28 @@ def get_item(item_id):
         responses:
           200:
             description: The item with the specified ID
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  description: The ID of the item
+                name:
+                  type: string
+                  description: The name of the item
+                cost:
+                  type: integer
+                  description: The cost of the item
+                quantity:
+                  type: integer
+                  description: The quantity of the item
           404:
             description: Item not found
+            schema:
+              type: object
+              properties:
+                error:
+                  type: string
     """
     logging.info(f"GET request received for item with ID {item_id}")
     item = next((item for item in inventory if item["id"] == item_id), None)
@@ -72,16 +109,43 @@ def create_item():
                   type: string
                   description: The name of the item
                 cost:
-                  type: number
+                  type: integer
                   description: The cost of the item
                 quantity:
                   type: integer
                   description: The quantity of the item
         responses:
           200:
-            description: The newly created item
+            description: The item with the specified ID
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  description: The ID of the item
+                name:
+                  type: string
+                  description: The name of the item
+                cost:
+                  type: integer
+                  description: The cost of the item
+                quantity:
+                  type: integer
+                  description: The quantity of the item
           400:
-            description: Missing required keys in JSON payload
+            description: Missing required keys
+            schema:
+              type: object
+              properties:
+                error:
+                  type: string
+          404:
+            description: Item not found
+            schema:
+              type: object
+              properties:
+                error:
+                  type: string
     """
     logging.info("POST request received to create a new item")
     new_item = request.json
@@ -113,8 +177,19 @@ def delete_item(item_id):
         responses:
           200:
             description: Item deleted successfully
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  description: A message indicating the item was deleted successfully
           404:
             description: Item not found
+            schema:
+              type: object
+              properties:
+                error:
+                  type: string
     """
     item = next((item for item in inventory if item["id"] == item_id), None)
     if item is None:
@@ -143,9 +218,6 @@ def update_item(item_id):
             schema:
               type: object
               properties:
-                id:
-                  type: integer
-                  description: The ID of the item (readonly)
                 name:
                   type: string
                   description: The name of the item
@@ -158,26 +230,63 @@ def update_item(item_id):
         responses:
           200:
             description: The updated item
-          400:
-            description: Cannot update 'id' field
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  description: The updated ID of the item
+                name:
+                  type: string
+                  description: The updated name of the item
+                cost:
+                  type: integer
+                  description: The updated cost of the item
+                quantity:
+                  type: integer
+                  description: The updated quantity of the item
           404:
             description: Item not found
+            schema:
+              type: object
+              properties:
+                error:
+                  type: string
     """
     item = next((item for item in inventory if item["id"] == item_id), None)
     updated_data = request.json
     if item is None:
         logging.warning(f"Item with ID {item_id} not found")
         return jsonify({"error": "Item not found"}), 404
-    if "id" in updated_data and updated_data["id"] != item_id:
-        logging.warning(f"Cannot update 'id' field for item with ID {item_id}")
-        return jsonify({"error": "Cannot update 'id' field"}), 400
+    if "id" in updated_data:
+        updated_data.pop("id")
     item.update(updated_data)
     logging.info(f"Item with ID {item_id} updated")
     return jsonify(item), 200
 
 
+@app.route('/healtz')
+def am_i_alive():
+    """
+        Check if the service is alive.
+        ---
+        responses:
+          200:
+            description: Service is alive
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  description: A message indicating the service is alive
+          500:
+            description: Service is not responding
+    """
+    response_object = {"message": "Hello, World! Service is working."}
+    return response_object, 200
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=port)
-
 
 
