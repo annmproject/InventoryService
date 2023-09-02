@@ -86,7 +86,6 @@ Host: {{host}}
 ### Update item
 
 - If item with ID does not exist the return code will be **404**.
-- If you try to change ID the return code will be **400**.
 - In case everything is OK the return code will be **200**.
 
 ```HTTP
